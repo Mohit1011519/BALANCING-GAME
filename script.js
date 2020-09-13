@@ -43,19 +43,23 @@ const ball = {
             if(highest_score < score){
                 highest_score = score;
             }
-       }
+        } 
+        // left wall
         if(this.x < this.r){
             this.x = this.r;
             this.dx = -this.dx;
         }
+        // right wall
         if(this.x + this.r > canvas.width){
             this.x = canvas.width - this.r;
             this.dx = -this.dx;
         }
+        // top wall
         if(this.y < this.r){
             this.y = this.r;
             this.dy = -this.dy;
         }
+        // ball falls down
         if(this.y + this.r > canvas.height){
             this.x = canvas.width/2;
             this.y = canvas.height/4;
@@ -93,6 +97,7 @@ function update(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     player.draw();
     ball.draw();
+    // drawball();
     player.newpos();
     ball.newpos();
     SCORE.innerText = 'SCORE = ' + score + '     TOP SCORE = ' + highest_score;
