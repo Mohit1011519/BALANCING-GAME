@@ -14,13 +14,11 @@ const player = {
     },
     checkWall: function(){
         if(this.x < 0){
-            this.x = 0;
-            //dx = 0;
-        }
+            this.x = 0;     
+     }
         if(this.x + this.w > canvas.width){
             this.x = canvas.width - this.w;
-            //dx = 0;
-        }
+     }
     },
     newpos: function(){
         this.x += this.dx;
@@ -38,7 +36,6 @@ const ball = {
     dx: 8,dy: 10,
 
     bounce: function(){
-        // ball lands on bar
         if((this.y + this.r + player.h > canvas.height) && (this.x >= player.x && this.x <= player.x+player.w)){
             this.y = canvas.height - player.h - this.r;
             this.dy = -this.dy;
@@ -46,23 +43,19 @@ const ball = {
             if(highest_score < score){
                 highest_score = score;
             }
-        }
-        // left wall
+       }
         if(this.x < this.r){
             this.x = this.r;
             this.dx = -this.dx;
         }
-        // right wall
         if(this.x + this.r > canvas.width){
             this.x = canvas.width - this.r;
             this.dx = -this.dx;
         }
-        // top wall
         if(this.y < this.r){
             this.y = this.r;
             this.dy = -this.dy;
         }
-        // ball falls down
         if(this.y + this.r > canvas.height){
             this.x = canvas.width/2;
             this.y = canvas.height/4;
@@ -100,7 +93,6 @@ function update(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     player.draw();
     ball.draw();
-    //drawBall();
     player.newpos();
     ball.newpos();
     SCORE.innerText = 'SCORE = ' + score + '     TOP SCORE = ' + highest_score;
